@@ -8,6 +8,10 @@ function App() {
         <div className='App'>
             <Routes>
                 <Route path='/' element={<SearchGists />} />
+                <Route
+                    path='/gist/search/:username'
+                    element={<SearchGists />}
+                />
                 <Route path='/gist/:gistId' element={<GistDetail />} />
             </Routes>
         </div>
