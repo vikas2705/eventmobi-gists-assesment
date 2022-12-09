@@ -5,7 +5,7 @@ const GistFiles = props => {
     const { files = {} } = props;
 
     if (!files || Object.keys(files).length === 0) {
-        return <p className='flex justify-center my-8 text-xl'>No files!</p>;
+        return null;
     }
 
     return (
@@ -24,15 +24,15 @@ const GistFiles = props => {
                                     </th>
                                     <th
                                         scope='col'
-                                        className='text-sm font-medium text-gray-900 px-6 py-4 text-left'
+                                        className='text-sm font-medium text-gray-900 px-12 py-4 text-left'
                                     >
-                                        Size
+                                        Type
                                     </th>
                                     <th
                                         scope='col'
                                         className='text-sm font-medium text-gray-900 px-6 py-4 text-left'
                                     >
-                                        Type
+                                        Size
                                     </th>
                                 </tr>
                             </thead>
@@ -55,11 +55,11 @@ const GistFiles = props => {
                                             <td className='px-6 py-4 text-sm text-left font-medium text-gray-900'>
                                                 <a href={rawUrl}>{filename}</a>
                                             </td>
+                                            <td className='text-sm text-gray-900 font-light px-12 py-4 text-left'>
+                                                <FileTag fileType={type} />
+                                            </td>
                                             <td className='text-sm text-gray-900 font-light px-6 py-4  text-left'>
                                                 {size}
-                                            </td>
-                                            <td className='text-sm text-gray-900 font-light px-6 py-4 text-left'>
-                                                <FileTag fileType={type} />
                                             </td>
                                         </tr>
                                     );

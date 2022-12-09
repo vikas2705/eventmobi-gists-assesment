@@ -1,6 +1,7 @@
 import React from "react";
 import Moment from "react-moment";
 import GistFiles from "../gist-files";
+import GistForks from "../gist-forks";
 
 const GistData = props => {
     const { gistDetails = {}, gistId = "" } = props;
@@ -25,11 +26,12 @@ const GistData = props => {
             avatar_url: avatarUrl = "",
             url: ownerUrl = "",
         } = {},
+        forks = [],
     } = gistDetails;
 
     return (
         <div className='flex flex-col text-left mx-4 my-8 border-solid border-2 p-8'>
-            <div className='flex justify-between my-1 text-gray-500'>
+            <div className='block sm:flex sm:justify-between my-4 sm:my-1 text-gray-500'>
                 <p>Id: {gistId}</p>
                 <p className='text-sm'>
                     Created At:{" "}
@@ -56,6 +58,8 @@ const GistData = props => {
                 )}{" "}
             </div>
             <GistFiles files={files} />
+
+            <GistForks forks={forks} />
 
             <div className='flex items-center mt-2 mb-1 text-gray-500'>
                 <a href={url} className='hover:underline'>

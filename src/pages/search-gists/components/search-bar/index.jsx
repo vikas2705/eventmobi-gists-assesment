@@ -6,8 +6,8 @@ const SearchBar = props => {
 
     return (
         <div className='flex justify-center mt-8'>
-            <form className='m-3 w-full md:w-2/4' onSubmit={onUserNameSearch}>
-                <h3 className='font-bold text-xl md:text-3xl mb-3'>
+            <form className='m-3 w-full sm:w-2/4' onSubmit={onUserNameSearch}>
+                <h3 className='font-bold text-xl sm:text-3xl mb-3'>
                     Search for public gists of any user
                 </h3>
                 <label

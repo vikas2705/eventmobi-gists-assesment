@@ -20,6 +20,7 @@ const FileTag = props => {
                     return "bg-blue-500";
                 case "py":
                 case "python":
+                case "x-python":
                     return "bg-green-500";
                 case "json":
                     return "bg-pink-500";
@@ -40,7 +41,7 @@ const FileTag = props => {
 
     return (
         <div
-            className={`border-solid rounded inline p-2 text-white font-semibold ${tagColor}`}
+            className={`border-solid rounded inline-block py-2 px-4 text-white font-semibold ${tagColor}`}
         >
             {tagType}
         </div>
