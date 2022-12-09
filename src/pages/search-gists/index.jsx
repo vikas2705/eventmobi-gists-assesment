@@ -13,6 +13,7 @@ const SearchGists = () => {
     const [searchedUsername, setSearchedUserName] = useState(username);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const showCancelIcon = !!username;
 
     const fetchGistsListForUser = useCallback(searchedUsername => {
         setLoading(true);
@@ -49,14 +50,18 @@ const SearchGists = () => {
     const handleUserNameSearch = useCallback(
         e => {
             e.preventDefault();
-            navigate(`/gist/search/${searchedUsername}`);
+            if (searchedUsername) {
+                navigate(`/gist/search/${searchedUsername}`);
+            } else {
+                navigate("/");
+            }
         },
         [navigate, searchedUsername]
     );
 
     const resetSearch = () => {
         setSearchedUserName("");
-        setGistsData([]);
+        navigate("/");
     };
 
     return (
@@ -69,6 +74,8 @@ const SearchGists = () => {
                         onUserNameChange={handleUserNameChange}
                         onUserNameSearch={handleUserNameSearch}
                         searchedUsername={searchedUsername}
+                        showCancelIcon={showCancelIcon}
+                        resetSearch={resetSearch}
                     />
                     {loading ? (
                         <Loader />
