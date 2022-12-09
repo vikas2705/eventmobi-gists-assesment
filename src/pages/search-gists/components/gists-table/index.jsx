@@ -63,7 +63,12 @@ const GistsTable = props => {
                                             } border-b`}
                                         >
                                             <td className='px-6 py-4 text-sm text-left font-medium text-gray-900'>
-                                                <a href={`/gist/${id}`}>{id}</a>
+                                                <a
+                                                    href={`/gist/${id}`}
+                                                    className='underline'
+                                                >
+                                                    {id}
+                                                </a>
                                             </td>
                                             <td className='text-sm text-gray-900 font-light px-6 py-4  text-left'>
                                                 {description}
