@@ -3,14 +3,24 @@ import React from "react";
 const GistForks = props => {
     const { forks = [] } = props;
 
+    // getting the last 3 forks
+    const forksToShow = [];
+    for (
+        let index = forks.length - 1;
+        index >= 0 && index >= forks.length - 3;
+        index--
+    ) {
+        forksToShow.push(forks[index]);
+    }
+
     return (
         <div className='my-3'>
             <p className='my-2'>
                 Forked by :{" "}
-                {!forks || (forks.length === 0 && <span>None</span>)}
+                {!forks || (forksToShow.length === 0 && <span>None</span>)}
             </p>
             <div className='flex items-center'>
-                {forks.map(fork => {
+                {forksToShow.map(fork => {
                     const { user: { avatar_url: avatarUrl, url, login } = {} } =
                         fork;
                     return (
