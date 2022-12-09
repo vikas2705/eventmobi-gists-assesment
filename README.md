@@ -63,8 +63,13 @@ Inside the src folder, created two separate folders for :-
     -   For all the main pages/features of the App
     -   I have created subfolders for all features, e.g. "search page" and "gist detail" page
 -   common:
-
     -   For all the common code that can be shared across pages/features.
+
+An advantage of the above folder structure is that it is highly scalable and maintainable
+
+-   For adding any new functionality, we just need to add a new subfolder inside pages and all the related files inside it.
+-   Since all the related files are together, it is easier to understand the code for any new joiners
+-   Also, this makes the code easier to debug and develop.
 
 -   I have created a folder for every component which usually has its main component(index.jsx) and its custom css file (if required)
 
