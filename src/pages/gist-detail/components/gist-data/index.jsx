@@ -2,9 +2,11 @@ import React from "react";
 import Moment from "react-moment";
 import GistFiles from "../gist-files";
 import GistForks from "../gist-forks";
+import useCheckMobileScreen from "../../../../common/hooks/useCheckMobileScreen";
 
 const GistData = props => {
     const { gistDetails = {}, gistId = "" } = props;
+    const isMobile = useCheckMobileScreen();
 
     if (!gistId || !gistDetails || !gistDetails.description) {
         return (
@@ -31,6 +33,9 @@ const GistData = props => {
 
     return (
         <div className='flex flex-col text-left mx-4 my-8 border-solid border-2 p-8'>
+            {isMobile && (
+                <h2 className='font-semibold'>Description: {description}</h2>
+            )}
             <div className='block sm:flex sm:justify-between my-4 sm:my-1 text-gray-500'>
                 <p>Id: {gistId}</p>
                 <p className='text-sm'>
@@ -38,7 +43,9 @@ const GistData = props => {
                     <Moment date={createdAt} format='MMM-DD-YYYY HH:mm:ss' />
                 </p>
             </div>
-            <h2 className='font-semibold'>Description: {description}</h2>
+            {!isMobile && (
+                <h2 className='font-semibold'>Description: {description}</h2>
+            )}
             <div className='flex items-center'>
                 <h3>
                     Owner:{" "}
