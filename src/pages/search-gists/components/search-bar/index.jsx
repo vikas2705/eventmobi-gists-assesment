@@ -2,7 +2,8 @@ import React from "react";
 import SearchIcon from "../../../../common/assets/icons/search";
 
 const SearchBar = props => {
-    const { onUserNameChange, onUserNameSearch, searchedUsername } = props;
+    const { onUserNameChange, onUserNameSearch, searchedUsername = "" } = props;
+
     return (
         <div className='flex justify-center mt-8'>
             <form className='m-3 w-full md:w-2/4' onSubmit={onUserNameSearch}>
@@ -39,4 +40,4 @@ const SearchBar = props => {
     );
 };
 
-export default SearchBar;
+export default React.memo(SearchBar);

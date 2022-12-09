@@ -1,15 +1,11 @@
 import React from "react";
-import Moment from "react-moment";
+import FileTag from "../../../search-gists/components/file-tag";
 
-const GistsTable = props => {
-    const { gistsData = [] } = props;
+const GistFiles = props => {
+    const { files = {} } = props;
 
-    if (!gistsData || !gistsData.length) {
-        return (
-            <p className='flex justify-center my-8 text-xl'>
-                No gists data to show!
-            </p>
-        );
+    if (!files || Object.keys(files).length === 0) {
+        return <p className='flex justify-center my-8 text-xl'>No files!</p>;
     }
 
     return (
@@ -24,36 +20,30 @@ const GistsTable = props => {
                                         scope='col'
                                         className='text-sm font-medium text-gray-900 px-6 py-4 text-left'
                                     >
-                                        Id
+                                        File name
                                     </th>
                                     <th
                                         scope='col'
                                         className='text-sm font-medium text-gray-900 px-6 py-4 text-left'
                                     >
-                                        Description
+                                        Size
                                     </th>
                                     <th
                                         scope='col'
                                         className='text-sm font-medium text-gray-900 px-6 py-4 text-left'
                                     >
-                                        Created At
-                                    </th>
-                                    <th
-                                        scope='col'
-                                        className='text-sm font-medium text-gray-900 px-6 py-4 text-left'
-                                    >
-                                        Files count
+                                        Type
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {gistsData.map((gistItem, index) => {
+                                {Object.values(files).map((fileItem, index) => {
                                     const {
-                                        id,
-                                        files = {},
-                                        created_at: createdAt,
-                                        description,
-                                    } = gistItem;
+                                        filename,
+                                        type,
+                                        raw_url: rawUrl,
+                                        size,
+                                    } = fileItem;
                                     return (
                                         <tr
                                             className={`${
@@ -63,19 +53,13 @@ const GistsTable = props => {
                                             } border-b`}
                                         >
                                             <td className='px-6 py-4 text-sm text-left font-medium text-gray-900'>
-                                                <a href={`/gist/${id}`}>{id}</a>
+                                                <a href={rawUrl}>{filename}</a>
                                             </td>
                                             <td className='text-sm text-gray-900 font-light px-6 py-4  text-left'>
-                                                {description}
+                                                {size}
                                             </td>
                                             <td className='text-sm text-gray-900 font-light px-6 py-4 text-left'>
-                                                <Moment
-                                                    date={createdAt}
-                                                    format='MMM-DD-YYYY HH:mm:ss'
-                                                />
-                                            </td>
-                                            <td className='text-sm text-gray-900 font-light px-6 py-4 text-left'>
-                                                {Object.keys(files).length}
+                                                <FileTag fileType={type} />
                                             </td>
                                         </tr>
                                     );
@@ -89,4 +73,4 @@ const GistsTable = props => {
     );
 };
 
-export default React.memo(GistsTable);
+export default React.memo(GistFiles);
